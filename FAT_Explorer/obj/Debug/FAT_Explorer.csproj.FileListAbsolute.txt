@@ -1,0 +1,6 @@
+E:\University\3rd Semester\Machine Language and System Programming (BS)\Final Project\FAT_Explorer\FAT_Explorer\FAT_Explorer\bin\Debug\FAT_Explorer.exe.config
+E:\University\3rd Semester\Machine Language and System Programming (BS)\Final Project\FAT_Explorer\FAT_Explorer\FAT_Explorer\bin\Debug\FAT_Explorer.exe
+E:\University\3rd Semester\Machine Language and System Programming (BS)\Final Project\FAT_Explorer\FAT_Explorer\FAT_Explorer\bin\Debug\FAT_Explorer.pdb
+E:\University\3rd Semester\Machine Language and System Programming (BS)\Final Project\FAT_Explorer\FAT_Explorer\FAT_Explorer\obj\Debug\FAT_Explorer.csprojResolveAssemblyReference.cache
+E:\University\3rd Semester\Machine Language and System Programming (BS)\Final Project\FAT_Explorer\FAT_Explorer\FAT_Explorer\obj\Debug\FAT_Explorer.exe
+E:\University\3rd Semester\Machine Language and System Programming (BS)\Final Project\FAT_Explorer\FAT_Explorer\FAT_Explorer\obj\Debug\FAT_Explorer.pdb

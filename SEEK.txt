@@ -1,0 +1,38 @@
+[DllImport("kernel32.dll", EntryPoint = "SetFilePointerEx")]
+extern static bool SetFilePointerEx(IntPtr hFile, long liDistanceToMove, out long lpNewFilePointer, uint dwMoveMethod);
+
+private const uint DRIVE_START = 0;
+private const uint DRIVE_CURRENT = 1;
+private const uint DRIVE_END = 2;
+
+private const int CLUSTER_BOOT_SECTOR = -10;
+private const int CLUSTER_FAT_1 = -21;
+private const int CLUSTER_FAT_2 = -22;
+private const int CLUSTER_FAT_3 = -23;
+private const int CLUSTER_ROOT = -30;
+
+private bool setDataReaderPointer(long sectors, uint beginning) {
+	long ret = 0;
+	if(!file.Equals(IntPtr.Zero) && SetFilePointerEx(file, sectors * 512, out ret, beginning))
+		return true;
+	else {
+		Console.WriteLine("There is an error in seeking data.");
+		lastError = GetLastError();
+		return false;
+	}
+}
+
+private bool findCluster(int cluster) {
+	if(cluster == CLUSTER_BOOT_SECTOR && setDataReaderPointer(0, DRIVE_START))
+		return true;
+	else if((cluster == CLUSTER_FAT_1 || cluster == CLUSTER_FAT_2 || cluster == CLUSTER_FAT_3) && CLUSTER_FAT_1 - cluster < FATs && setDataReaderPointer(reservedSectors + (CLUSTER_FAT_1 - cluster) * sectorsPerFAT, DRIVE_START))
+		return true;
+	else if(cluster == CLUSTER_ROOT && setDataReaderPointer(reservedSectors + FATs * sectorsPerFAT, DRIVE_START))
+		return true;
+	else if(setDataReaderPointer(reservedSectors + FATs * sectorsPerFAT + (rootEntries * 32) / bytesPerSector + (cluster - 2) * sectorsPerCluster, DRIVE_START))
+		return true;
+	else {
+		Console.WriteLine("There is an error in finding cluster.");
+		return false;
+	}
+}
